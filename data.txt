@@ -1,0 +1,63 @@
+diamond ring
+5
+1000
+TV
+1000
+400
+sandwich
+10
+2
+textbook
+160
+47
+pencils
+10
+1
+notebook
+12
+2
+stuffed animal
+32
+5
+filing cabinet
+320
+30
+penny collection
+480
+20
+painting
+160
+3000
+rock collection
+3200
+256
+butcher knife
+16
+4
+lollipops
+48
+3
+fish tank
+500
+45
+greyhound
+800
+1000000
+Rolex watch
+6
+500
+recliner
+1280
+381
+cell phone
+8
+500
+soccer ball
+30
+5
+sleeping bag
+80
+50
+bike
+800
+388
