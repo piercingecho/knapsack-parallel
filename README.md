@@ -2,6 +2,14 @@
 
 This is a survey into parallel C libraries using the knapsack problem.
 
+Note: this is currently in progress. Improved functionality (e.g. a makefile) is planned for the near future..
+
+## Sequential Version
+
+This version of the program is currently disabled. To re-enable it, ctrl+f the `knapsack_sequential.c` file 
+for "main_sequential", and rename the function to "main". This is because the functions in that file are being 
+used for other implementations, and I will only be able to improve the code architecture later.
+
 ### Instructions to Run Program
 
 In the terminal, run:
