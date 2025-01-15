@@ -23,12 +23,12 @@
 
 struct Item* read_knapsack_file(char filename[], int num_items_to_read, struct Item items[]);
 void print_best_combo_output(int best_combo, struct Item items[], int num_items);
-int brute_force_combinations(struct Item items[], int num_items, int weight_limit, int start, int step);
+int brute_force_combinations_sequential(struct Item items[], int num_items, int weight_limit, int start, int step);
 int calculate_combination_weight(struct Item items[], int items_length, int combination_id);
 int calculate_combination_value(struct Item items[], int items_length, int combination_id);
 
 
-int main(int argc, char* argv[]) 
+int main_sequential(int argc, char* argv[]) 
 {
     /*
     * Arguments:
@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
     struct Item items[num_items];
     read_knapsack_file(FILE_NAME, num_items, items);
 
-    int best_combo = brute_force_combinations(items, num_items, weight_limit, 0, 1);
+    int best_combo = brute_force_combinations_sequential(items, num_items, weight_limit, 0, 1);
 
 
     if(WORDY_OUTPUT)
@@ -140,7 +140,7 @@ struct Item* read_knapsack_file(char filename[], int num_items_to_read, struct I
 
 }
 
-int brute_force_combinations(struct Item items[], int num_items, int weight_limit, int start, int step)
+int brute_force_combinations_sequential(struct Item items[], int num_items, int weight_limit, int start, int step)
 {
     /*
     * Goes through each combination value for the knapsack, up to 2^num_items. We implement step motion 
