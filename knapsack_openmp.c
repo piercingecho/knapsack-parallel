@@ -143,7 +143,7 @@ int brute_force_combinations_parallel(struct Item items[], int num_items, int we
         {
             /*
             We already know the best combo is good for the weight limit. So we just check value.
-            This works with the edge case of no thread being valid because we initialize thread_best_value to -1.
+            This works with the edge case of no combination worked by the thread being valid because we initialize thread_best_value to -1.
             */
             if(thread_best_value > best_combo_value)
             {
