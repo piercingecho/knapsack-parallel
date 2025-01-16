@@ -6,9 +6,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <omp.h>
-#include "knapsack_sequential.c"
+#include "KnapsackFunctions.h"
     //has #include "Item.h"
 
+#define FILE_NAME "data.txt"
 #define NUM_THREADS 8
 
 int brute_force_combinations_parallel(struct Item items[], int num_items, int weight_limit, int num_threads);
@@ -92,7 +93,7 @@ int brute_force_combinations_parallel(struct Item items[], int num_items, int we
 
     /* Create a set of threads to complete problem. Share the best version, keep local bests so we don't have to mutex until the end. */
     #pragma omp parallel \
-        shared(best_combo_id, best_combo_value, chunk_size) \
+        shared(items, num_items, best_combo_id, best_combo_value, chunk_size) \
         num_threads(NUM_THREADS)
  	{
         // for threads
@@ -128,6 +129,9 @@ int brute_force_combinations_parallel(struct Item items[], int num_items, int we
             {
                 printf("Thread %d: Combo %d\n", tid, curr_combo_id);
             }
+            
+
+
 
             if(curr_combo_weight <= weight_limit && curr_combo_value > thread_best_value)
             {
@@ -137,6 +141,7 @@ int brute_force_combinations_parallel(struct Item items[], int num_items, int we
 
 		}
 
+        #pragma omp barrier
 
         // Lock variables from being accessed
         #pragma omp critical (global_best_combo_lock)
@@ -145,10 +150,12 @@ int brute_force_combinations_parallel(struct Item items[], int num_items, int we
             We already know the best combo is good for the weight limit. So we just check value.
             This works with the edge case of no combination worked by the thread being valid because we initialize thread_best_value to -1.
             */
+
             if(thread_best_value > best_combo_value)
             {
                 best_combo_id = thread_best_combo_id;
-                best_combo_value = curr_combo_value;
+                best_combo_value = thread_best_value;
+                //best_combo_value = curr_combo_value;
             }
             else if(thread_best_value == best_combo_value && thread_best_combo_id < best_combo_id)
             {
